@@ -2,10 +2,8 @@ const dicCheck = {};
 $(document).on('change', 'input[type=checkbox]', function () {
   if ($(this).is(':checked')) {
     dicCheck[$(this).attr('data-id')] = $(this).attr('data-name');
-    console.log(dicCheck);
   } else {
     delete dicCheck[$(this).attr('data-id')];
-    console.log(dicCheck);
   }
   if (Object.values(dicCheck).length === 0) {
     $('.amenities h4').html('&nbsp;');
@@ -29,10 +27,10 @@ $.ajax({
   contentType: 'application/json',
   success: function (data) {
     for (let i = 0; i < data.length; i++) {
-      let place = data[i];
+      const place = data[i];
       $('.places').append(`<article>
         <div class="title_box">
-          <h2> ${ place.name }</h2>
+          <h2> ${place.name}</h2>
           <div class="price_by_night">${place.price_by_night}</div>
         </div>
         <div class="information">
@@ -41,7 +39,7 @@ $.ajax({
                 <div class="number_bathrooms"> ${place.number_bathrooms}</div>
         </div>
               <div class="description">
-              ${ place.description}
+              ${place.description}
               </div>
       </article>`);
     }
